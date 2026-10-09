@@ -1,0 +1,260 @@
+﻿Revisão Banco de Dados - Prova Final
+
+
+
+
+-- ---------- PASSO 1: CRIAR A CENA DO CRIME ----------
+CREATE DATABASE IF NOT EXISTS operacao_blackout;
+USE operacao_blackout;
+
+
+CREATE TABLE suspeitos (
+    id_suspeito INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    setor VARCHAR(50) NOT NULL,
+    idade INT NOT NULL,
+    cor_camisa VARCHAR(30) NOT NULL,
+    local_visto VARCHAR(100),
+    ferramenta VARCHAR(50),
+    arquivos_transferidos INT NOT NULL
+);
+
+
+INSERT INTO suspeitos
+    (nome, setor, idade, cor_camisa, local_visto, ferramenta, arquivos_transferidos)
+VALUES
+    ('Ana Silva',       'RH',         35, 'Azul',     'Recepção',        'Chave USB', 320),
+    ('Bruno Costa',     'TI',         42, 'Preta',    'Sala Servidores', 'Notebook',  610),
+    ('Carla Dias',      'Vendas',     28, 'Branca',   'Estacionamento',  'Celular',   150),
+    ('Diego Nunes',     'TI',         29, 'Preta',    'Sala Servidores', 'Notebook',  720),
+    ('Elisa Ramos',     'Marketing',  33, 'Vermelha', 'Copa',            'Notebook',  480),
+    ('Fábio Melo',      'TI',         45, 'Preta',    'Corredor',        'Notebook',  550),
+    ('Gabriela Faria',  'Financeiro', 38, 'Preta',    'Recepção',        'Pasta',     200),
+    ('Henrique Alves',  'TI',         31, 'Azul',     'Sala Servidores', 'Notebook',  800),
+    ('Isabela Rocha',   'Vendas',     26, 'Preta',    'Estacionamento',  'Celular',    90),
+    ('João Pedro',      'RH',         50, 'Branca',   'Corredor',        'Chave USB', 610),
+    ('Karina Souza',    'TI',         39, 'Preta',    'Sala Servidores', 'Notebook',  480),
+    ('Lucas Martins',   'Vendas',     34, 'Preta',    'Estacionamento',  'Notebook',  530),
+    ('Mariana Lopes',   'Financeiro', 27, 'Branca',   'Recepção',        'Chave USB', 610),
+    ('Nicolas Farias',  'TI',         36, 'Azul',     'Sala Servidores', 'Notebook',  690),
+    ('Otávio Reis',     'Marketing',  41, 'Preta',    'Corredor',        'Pasta',     550);
+
+
+-- Confirmação: devem aparecer exatamente 15 linhas.
+SELECT COUNT(*) AS total_suspeitos FROM suspeitos;
+
+
+
+
+-- ============================================================
+-- PISTA 1 — Operador > (maior que)
+-- "O culpado transferiu MAIS DE 500 arquivos."
+-- ============================================================
+SELECT nome, arquivos_transferidos
+FROM suspeitos
+WHERE arquivos_transferidos > 500;
+-- Sobrevivem: Bruno, Diego, Fábio, Henrique, João, Lucas, Mariana, Nicolas, Otávio (9 pessoas)
+
+
+
+
+-- ============================================================
+-- PISTA 2 — Operador < (menor que)
+-- "O culpado tem MENOS DE 40 anos."
+-- Cruzando com a Pista 1: as duas condições viram um AND.
+-- ============================================================
+SELECT nome, arquivos_transferidos, idade
+FROM suspeitos
+WHERE arquivos_transferidos > 500
+  AND idade < 40;
+-- Sobrevivem: Diego, Henrique, Lucas, Mariana, Nicolas (5 pessoas)
+
+
+
+
+-- ============================================================
+-- PISTA 3 — Operador = (igual)
+-- "Ela usava camisa PRETA."
+-- Mais uma condição entra no AND.
+-- ============================================================
+SELECT nome, arquivos_transferidos, idade, cor_camisa
+FROM suspeitos
+WHERE arquivos_transferidos > 500
+  AND idade < 40
+  AND cor_camisa = 'Preta';
+-- Sobrevivem: Diego, Lucas (2 pessoas)
+
+
+
+
+-- ============================================================
+-- PISTA 4 — Operador = (igual)
+-- "Só alguém de TI teria esse acesso."
+-- Última condição — deve sobrar 1 nome só.
+-- ============================================================
+SELECT nome, arquivos_transferidos, idade, cor_camisa, setor
+FROM suspeitos
+WHERE arquivos_transferidos > 500
+  AND idade < 40
+  AND cor_camisa = 'Preta'
+  AND setor = 'TI';
+-- Sobrevive: Diego Nunes -> ESTE É O ASSASSINO.
+
+
+
+
+-- ============================================================
+-- ACUSAÇÃO FINAL — local visto e ferramenta usada pelo culpado
+-- ============================================================
+SELECT nome, local_visto, ferramenta
+FROM suspeitos
+WHERE nome = 'Diego Nunes';
+-- Resultado: Sala Servidores | Notebook
+
+
+
+
+-- ============================================================
+-- ANÁLISE 1 — ORDER BY (ranking geral por arquivos transferidos)
+-- ============================================================
+SELECT nome, arquivos_transferidos
+FROM suspeitos
+ORDER BY arquivos_transferidos DESC;
+-- 1º Henrique Alves (800) | 2º Diego Nunes (720) | 3º Nicolas Farias (690)
+-- O culpado (Diego) está em 2º -> SIM, está entre os 3 primeiros.
+
+
+
+
+-- ============================================================
+-- ANÁLISE 2 — GROUP BY (quantas pessoas por setor)
+-- ============================================================
+SELECT setor, COUNT(*) AS qtd_pessoas
+FROM suspeitos
+GROUP BY setor
+ORDER BY qtd_pessoas DESC;
+-- TI = 6 pessoas (o maior) | Vendas = 3 | RH = 2 | Marketing = 2 | Financeiro = 2
+-- O setor com mais pessoas é TI -> SIM, é o mesmo setor do culpado.
+
+
+
+
+-- ============================================================
+-- ANÁLISE 3 — HAVING (setores que transferiram mais de 1000 arquivos no total)
+-- ============================================================
+SELECT setor, SUM(arquivos_transferidos) AS total_transferido
+FROM suspeitos
+GROUP BY setor
+HAVING SUM(arquivos_transferidos) > 1000;
+-- TI = 3850 (aparece) | Marketing = 1030 (também aparece)
+-- O setor do culpado (TI) aparece na lista -> reforça a acusação,
+-- mesmo que Marketing também apareça (isso mostra que HAVING sozinho
+-- não prova culpa — é só mais uma evidência que bate com o suspeito).
+
+
+
+
+-- ============================================================
+-- DESARMANDO O VÍRUS — as 3 senhas numéricas
+-- ============================================================
+
+
+-- SENHA 1 — SUM: total de arquivos transferidos pelo setor Vendas
+SELECT SUM(arquivos_transferidos) AS senha_1
+FROM suspeitos
+WHERE setor = 'Vendas';
+-- Resultado: 770
+
+
+-- SENHA 2 — MAX: idade da pessoa mais velha da empresa
+SELECT MAX(idade) AS senha_2
+FROM suspeitos;
+-- Resultado: 50 (João Pedro)
+
+
+-- SENHA 3 — AVG: média de idade de quem usa Notebook
+SELECT AVG(idade) AS senha_3
+FROM suspeitos
+WHERE ferramenta = 'Notebook';
+-- Resultado: 36.125 (arredondando: 36.13)
+
+
+
+
+-- ============================================================
+-- DESAFIO — tudo em uma consulta só
+-- Junta as 4 pistas (WHERE + AND) numa única consulta.
+-- ============================================================
+SELECT nome, setor, idade, cor_camisa, arquivos_transferidos
+FROM suspeitos
+WHERE arquivos_transferidos > 500
+  AND idade < 40
+  AND cor_camisa = 'Preta'
+  AND setor = 'TI';
+
+
+-- Resultado: Diego Nunes -> mesmo nome da acusação final. Missão confirmada.
+
+
+
+
+-- ============================================================
+-- ENTREGA DA MISSÃO — resumo de todas as respostas
+-- ============================================================
+-- 1. Nome do assassino:            Diego Nunes
+-- 2. Local onde foi visto:         Sala Servidores
+-- 3. Ferramenta usada:             Notebook
+-- 4. Senha 1 (SUM, setor Vendas):  770
+-- 5. Senha 2 (MAX idade):          50
+-- 6. Senha 3 (AVG idade Notebook): 36.13
+-- 7. 1º do ranking de arquivos:    Henrique Alves (800)
+-- 8. Setor com mais pessoas:       TI (6 pessoas)
+Resolução feita por mim
+create database Prova
+use Prova
+
+
+create table ()
+
+
+INSERT INTO suspeitos (id_suspeito, nome, setor, idade, cor_camisa, local_visto, ferramenta, arquivos_transferidos) VALUES (1, 'Marcos', 'Financeiro", 45, 'Azul', 'Diretoria', 'Pendrive', 10),
+(2, 'Julia', 'Vendas', 28, 'Branca', 'Estoque', 'Mochila', 0),
+(3, 'Roberto', 'TI', 50, 'Preta', 'Servidor', 'HD Externo', 600), (4, 'Ana', 'Diretoria', 36, 'Preta', 'Diretoria', 'Notebook', 750), (5, 'Carla', 'TI', 32, 'Verde', 'Servidor', 'Pendrive', 550), (6, 'Bruno', 'TI', 42, 'Preta', 'Estoque', 'HD Externo', 900), (7, 'Vicente', 'TI', 34, 'Preta', 'Servidor', 'Notebook', 850), (8, 'Luisa', 'RH', 25, 'Vermelha', 'Refeitorio', 'Celular', 5), (9, 'Fernando', 'Vendas', 30, 'Azul', 'Loja', 'Mochila', 120), (10, 'Patricia', 'Diretoria', 56, 'Branca', 'Diretoria', 'Notebook', 200), (11, 'Thiago', 'TI', 29, 'Branca', 'Servidor', 'Pendrive', 30), (12, 'Camila', 'Financeiro', 40, 'Preta', 'Refeitorio', 'Celular', 80), (13, 'Ricardo', 'RH', 34, 'Verde', 'Diretoria', 'Notebook', 15), (14, 'Sonia', 'Vendas', 48, "Azul', 'Loja', 'Mochila', 40), (15, 'Diego', 'TI', 22, 'Amarela', 'Estoque', 'Pendrive', 95);
+
+
+
+
+Select * from suspeitos  WHERE arquivos transferidos > 500;
+
+
+Select * from suspeitos WHERE arquivos transferidos > 500 AND idade < 40;
+
+
+Select * from suspeitos WHERE arquivos transferidos > 500 AND idade < 40 AND cor camisa = ‘Preta’;
+
+
+Select * from suspeitos WHERE arquivos transferidos > 500 AND idade < 40 AND cor camisa = ‘Preta’ AND setor = ‘TI’;
+
+
+
+
+
+
+
+
+select * from suspeitos ORDER BY arquivos transferidos DESC;
+
+
+select * from suspeitos GROUP BY setor;
+
+
+select * from suspeitos GROUP BY setor HAVING arquivos transferidos > 1000;
+
+
+select SUM(arquivos transferidos)  from suspeitos WHERE setor = ‘vendas’;
+
+
+select MAX(idade) from suspeitos;
+
+
+select AVG(idade) from suspeitos WHERE ferramenta = ‘notebook’;
