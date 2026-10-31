@@ -15,14 +15,14 @@ html {
     --card-bg: #ffffff;
     --border: #222222;
 
-    /* Cores do Projeto: Rosa prevalente + Laranja e Amarelo */
+    
     --pink: #c94f78;
     --pink-dark: #9f315b;
     --pink-light: #e889a8;
     --pink-soft: #f3b4c7;
 
-    --orange: #f26430;
-    --yellow: #f4b942;
+    --orange: #e6835f;
+    --yellow: #fdf07c;
 
     --shadow: 6px 6px 0 #000000;
 }
@@ -32,7 +32,7 @@ body.dark {
     --text: #f8e9ef;
     --muted: #d4c0c8;
     --card-bg: #251e23;
-    --border: #f3b4c7;
+    --border: #851436;
     --shadow: 6px 6px 0 #000000;
 }
 
@@ -80,7 +80,7 @@ body.dark .indice {
 }
 
 .catarina span {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
 }
 
 .coisas {
@@ -95,7 +95,7 @@ body.dark .indice {
 }
 
 .coisas a:hover {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
 }
 
 .modos {
@@ -117,9 +117,7 @@ body.dark .indice {
     color: white;
 }
 
-/* =========================
-   HERO
-========================= */
+/**/
 .chico {
     min-height: 85vh;
     padding: 80px 8%;
@@ -156,7 +154,7 @@ body.dark .indice {
 }
 
 .calice {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 3px;
@@ -166,13 +164,22 @@ body.dark .indice {
 
 .chico h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-size: 100px;
     line-height: 0.95;
     margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
 }
 
 .chico h1 span {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
+    font-family: "Dancing Script", cursive;
+    font-size: 92px;
+    letter-spacing: 7.2px;
+    margin-left: 14%;
+    position: absolute;
+    z-index: 2;
+    top: 33px;
 }
 
 .apesar {
@@ -199,7 +206,7 @@ body.dark .indice {
 }
 
 .primeirob {
-    background: var(--pink);
+    background: rgba(194, 19, 77, 0.904);
     color: white;
     box-shadow: 5px 5px 0 #000;
 }
@@ -218,15 +225,13 @@ body.dark .indice {
     background: var(--pink-soft);
 }
 
-/* =========================
-   SEÇÕES & CABEÇALHOS
-========================= */
+/*CABEÇALHO */
 .section {
     padding: 90px 8%;
 }
 
-.section-tag {
-    color: var(--pink);
+.tag {
+    color: rgba(194, 19, 77, 0.904);
     font-weight: 700;
     letter-spacing: 2px;
     font-size: 0.9rem;
@@ -235,7 +240,7 @@ body.dark .indice {
     text-transform: uppercase;
 }
 
-.section-titulo {
+.homem {
     font-family: 'Cinzel', serif;
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
@@ -243,8 +248,8 @@ body.dark .indice {
     margin-bottom: 12px;
 }
 
-.section-titulo span {
-    color: var(--pink);
+.homem span {
+    color: rgba(194, 19, 77, 0.904);
 }
 
 .section-introducao {
@@ -254,9 +259,7 @@ body.dark .indice {
     line-height: 1.6;
 }
 
-/* =========================
-   SOBRE MIM
-========================= */
+/*SOBRE MIM */
 .ney {
     max-width: 1100px;
     display: grid;
@@ -272,7 +275,7 @@ body.dark .indice {
 }
 
 .sangue {
-    background: var(--pink);
+    background: rgba(194, 19, 77, 0.904);
     color: white;
     padding: 45px;
     border-radius: 12px;
@@ -293,9 +296,7 @@ body.dark .indice {
     margin-top: 10px;
 }
 
-/* =========================
-   FORMAÇÃO
-========================= */
+/* FORMAÇÃO */
 .formacao {
     max-width: 1100px;
     display: flex;
@@ -310,7 +311,7 @@ body.dark .indice {
 }
 
 .data {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
     font-weight: 700;
     letter-spacing: 2px;
     font-size: 0.85rem;
@@ -323,15 +324,13 @@ body.dark .indice {
 }
 
 .cotemig {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
     font-weight: 700;
     text-align: right;
     line-height: 1.5;
 }
 
-/* =========================
-   HABILIDADES
-========================= */
+/* habilidades */
 .skills-section {
     background: #f3e7dd;
 }
@@ -370,7 +369,7 @@ body.dark .skills-section {
     left: 0;
 }
 
-.bar-pink { background: var(--pink); }
+.bar-pink { background: rgba(194, 19, 77, 0.904); }
 .bar-orange { background: var(--orange); }
 .bar-yellow { background: var(--yellow); }
 
@@ -388,7 +387,7 @@ body.dark .skills-section {
 .skill-num {
     font-size: 0.9rem;
     font-weight: 800;
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
 }
 
 .skill-box h3 {
@@ -402,10 +401,8 @@ body.dark .skills-section {
     font-size: 0.95rem;
 }
 
-/* =========================
-   PROJETOS (QUADRADINHOS COM EXPANSÃO)
-========================= */
-.projects-grid {
+/*PROJETOS */
+.projeto-grid {
     max-width: 1100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -413,7 +410,7 @@ body.dark .skills-section {
     margin-bottom: 50px;
 }
 
-.project-card {
+.projeto-card {
     background: var(--card-bg);
     border-radius: 22px;
     border: 2px solid var(--border);
@@ -425,7 +422,7 @@ body.dark .skills-section {
     transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.project-card:hover {
+.projeto-card:hover {
     transform: translateY(-5px);
 }
 
@@ -440,11 +437,11 @@ body.dark .skills-section {
     z-index: 2;
 }
 
-.tape-pink { background: var(--pink); }
+.tape-pink { background: rgba(194, 19, 77, 0.904); }
 .tape-orange { background: var(--orange); }
 .tape-yellow { background: var(--yellow); }
 
-.project-img-wrapper {
+.projeto-img-wrapper {
     width: 100%;
     height: 180px;
     border-radius: 16px;
@@ -454,14 +451,14 @@ body.dark .skills-section {
     border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.project-img-wrapper img {
+.projeto-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.project-badge {
+.projeto-badge {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -475,26 +472,26 @@ body.dark .skills-section {
     text-transform: uppercase;
 }
 
-.project-title {
+.projeto-title {
     font-family: 'Cinzel', serif;
     font-size: 1.35rem;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--pink);
+    color:rgba(194, 19, 77, 0.904);
 }
 
-.project-desc {
+.projeto-desc {
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.5;
     margin-bottom: 16px;
 }
 
-/* Botão de Expandir Quadrado */
+/* exprandir quadrado */
 .expand-btn {
     width: 100%;
     background: transparent;
-    border: 2px dashed var(--pink);
+    border: 2px dashed rgba(194, 19, 77, 0.904);
     border-radius: 10px;
     padding: 10px 14px;
     color: var(--pink);
@@ -518,12 +515,12 @@ body.dark .skills-section {
     font-weight: bold;
 }
 
-.project-card.active .expand-btn .arrow {
+.projeto-card.active .expand-btn .arrow {
     transform: rotate(180deg);
 }
 
-/* Gaveta com os 2 Projetos Internos */
-.sub-projects-drawer {
+
+.sub-projeto-drawer {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, margin-top 0.4s ease;
@@ -532,12 +529,12 @@ body.dark .skills-section {
     gap: 10px;
 }
 
-.project-card.active .sub-projects-drawer {
+.projeto-card.active .sub-projeto-drawer {
     max-height: 250px;
     margin-top: 15px;
 }
 
-.sub-project-item {
+.sub-projeto-item {
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -548,23 +545,23 @@ body.dark .skills-section {
     gap: 8px;
 }
 
-.sub-project-info {
+.sub-projeto-info {
     display: flex;
     flex-direction: column;
 }
 
-.sub-project-info strong {
+.sub-projeto-info strong {
     font-size: 0.82rem;
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
 }
 
-.sub-project-info span {
+.sub-projeto-info span {
     font-size: 0.75rem;
     color: var(--muted);
 }
 
 .sub-download-btn {
-    background: var(--pink);
+    background: rgba(194, 19, 77, 0.904);
     color: #fff;
     padding: 6px 12px;
     border-radius: 6px;
@@ -579,9 +576,7 @@ body.dark .skills-section {
     transform: scale(1.05);
 }
 
-/* ========================================================
-   RETÂNGULOS EM DEGRADÉ (GITHUB, LINKEDIN, INSTAGRAM)
-======================================================== */
+/* GITHUB LINKEDIN INSTAGRAM*/
 .social-banners {
     max-width: 1100px;
     display: flex;
@@ -608,15 +603,15 @@ body.dark .skills-section {
 
 /* Degradés personalizados combinando Rosa, Laranja e Amarelo */
 .banner-github {
-    background: linear-gradient(100deg, rgba(201, 79, 120, 0.9), rgba(242, 100, 48, 0.85));
+    background: linear-gradient(100deg, rgba(194, 19, 77, 0.904), rgba(218, 111, 50, 0.85));
 }
 
 .banner-linkedin {
-    background: linear-gradient(100deg, rgba(242, 100, 48, 0.88), rgba(244, 185, 66, 0.9));
+    background: linear-gradient(100deg, rgba(236, 67, 25, 0.88), rgba(243, 220, 87, 0.9));
 }
 
 .banner-instagram {
-    background: linear-gradient(100deg, rgba(201, 79, 120, 0.9), rgba(244, 185, 66, 0.85));
+    background: linear-gradient(100deg, rgba(250, 202, 71, 0.9), rgba(194, 19, 77, 0.904));
 }
 
 .banner-tag {
@@ -665,9 +660,7 @@ body.dark .skills-section {
 
 
 
-/* =========================
-   CONTATO
-========================= */
+/* CONTATO */
 .contact-section {
     background: #f3e7dd;
 }
@@ -697,7 +690,7 @@ body.dark .contact-section {
 }
 
 .contact-details strong {
-    color: var(--pink);
+    color: rgba(194, 19, 77, 0.904);
     font-size: 0.85rem;
     text-transform: uppercase;
 }
@@ -734,7 +727,7 @@ body.dark .contact-section {
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: var(--pink);
+    border-color:rgba(194, 19, 77, 0.904);
 }
 
 .form-row {
@@ -743,11 +736,27 @@ body.dark .contact-section {
     gap: 15px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.btn-primary{
+    background: transparent;
+    color: var(--text);
+    display: inline-block;
+    padding: 14px 24px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: 2px solid var(--text);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--pink-soft);
+}
+
+
+
+/* RODAPÉ */
 footer {
-    background: var(--pink-dark);
+    background: rgba(194, 19, 77, 0.904);
     color: white;
     padding: 55px 8%;
     text-align: center;
@@ -760,7 +769,7 @@ footer {
 }
 
 .footer-name span {
-    color: var(--yellow);
+    color: rgb(255, 253, 154);
 }
 
 .footer-links {
@@ -772,15 +781,13 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--pink-soft);
+    color:rgb(255, 253, 154);
 }
 
-/* =========================
-   RESPONSIVIDADE (@media)
-========================= */
+/* RESPONSIVIDADE */
 @media (max-width: 980px) {
     .skills-grid,
-    .projects-grid {
+    .projeto-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -789,7 +796,7 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .hero-photo {
+    .photo {
         width: 220px;
         height: 220px;
     }
@@ -800,17 +807,17 @@ footer {
         display: none;
     }
 
-    .hero-content {
+    .content {
         flex-direction: column;
         text-align: center;
         gap: 35px;
     }
 
-    .hero-description {
+    .descrcao {
         margin: 0 auto 25px;
     }
 
-    .hero-buttons {
+    .buttons {
         justify-content: center;
     }
 
@@ -819,7 +826,7 @@ footer {
     }
 
     .skills-grid,
-    .projects-grid {
+    .projeto-grid {
         grid-template-columns: 1fr;
     }
 
