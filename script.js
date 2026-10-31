@@ -1,6 +1,3 @@
-// ========================================
-// ALTERNÂNCIA DE TEMA (CLARO / ESCURO)
-// ========================================
 const themeBtn = document.getElementById("modos");
 const temaSalvo = localStorage.getItem("tema");
 
@@ -21,9 +18,7 @@ if (themeBtn) {
     });
 }
 
-// ========================================
-// EXPANSÃO DOS QUADRADINHOS DE PROJETOS
-// ========================================
+
 const projectCards = document.querySelectorAll(".project-card");
 
 projectCards.forEach((card) => {
@@ -38,9 +33,6 @@ projectCards.forEach((card) => {
     }
 });
 
-// ========================================
-// FORMULÁRIO DE CONTATO
-// ========================================
 const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
